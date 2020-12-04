@@ -28,12 +28,12 @@ alias ls='ls -G'
 alias zsource="source $ZDOTDIR/.zshrc"
 alias cdt='cd $HOME/desktop'
 alias cdl='cd $HOME/downloads'
-alias ts='bash $HOME/.bin/tmux.sh'
+alias ts='bash $HOME/bin/tmux.sh'
 alias q='exit'
-alias memo='$HOME/.bin/memo.sh'
+alias memo='$HOME/bin/memo.sh'
 alias py='python'
 alias ipy='ipython'
-alias rcat='$HOME/.bin/rcat'
+alias rcat='$HOME/bin/rcat'
 alias poetry='python3 $HOME/.poetry/bin/poetry'
 
 alias vi='nvim'
@@ -115,7 +115,7 @@ function change_cursor() {
 
 zle -N change_cursor
 
-source "$HOME/.bin/git.zsh"
+source "$HOME/bin/git.zsh"
 #--------------------
 # git
 #--------------------

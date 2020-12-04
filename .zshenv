@@ -16,3 +16,8 @@ export XDG_CONFIG_HOME=$HOME/.config
 
 # neovim directory
 export NVIM_DIR=$HOME/.config/nvim
+
+# history file
+export HISTFILE=${ZDOTDIR}/history/.zsh_history
+export HISTSIZE=100000
+export SAVESIZE=100000

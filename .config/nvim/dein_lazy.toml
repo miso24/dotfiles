@@ -1,0 +1,45 @@
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+on_i = 1
+merged = '0'
+hook_source = '''
+  source $NVIM_DIR/hook/coc.nvim
+'''
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'alvan/vim-closetag'
+on_ft = ['html', 'xml', 'xhtml']
+hook_add = '''
+ source $NVIM_DIR/hook/vim-closetag.vim
+'''
+
+[[plugins]]
+repo = 'tpope/vim-commentary'
+on_i = 1
+
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+build = 'sh -c "cd app & yarn install"'
+hook_add = '''
+  source $NVIM_DIR/hook/markdown_preview.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/deol.nvim'
+on_i = 1
+hook_add = '''
+  source $NVIM_DIR/hook/deol.nvim
+'''
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+on_i = 1
+
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'
+on_i = 1

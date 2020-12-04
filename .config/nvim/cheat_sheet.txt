@@ -1,0 +1,49 @@
+## 基本
+
+### 移動系
+
+| command |          |
+|---------|----------|
+| h       | 左へ移動 |
+| j       | 下へ移動 |
+| k       | 上へ移動 |
+| l       | 右へ移動 |
+
+| command  |                                  |
+|----------|----------------------------------|
+| f<word>  | カーソルより前方にあるwordを検索 |
+| F<word>  | カーソルより前方にあるwordを検索 |
+
+## tab commands
+
+- [TABCMD] is <space>t
+
+| command   | detail               |
+|-----------|----------------------|
+| [TABCMD]r | move to right tab    |
+| [TABCMD]l | move to left tab     |
+| [TABCMD]e | create new tab       |
+| [TABCMD]n | move to next tab     |
+| [TABCMD]p | move to previous tab |
+| [TABCMD]c | close tab            |
+
+## split commands
+
+| command | detail             |
+|---------|--------------------|
+| ss      | split horizontal   |
+| vs      | split vertical     |
+| sh      | move left window   |
+| sj      | move bottom window |
+| sk      | move top window    |
+| sl      | move right window  |
+
+## denite
+
+| command | detail                   |
+|---------|--------------------------|
+| zc      | denite current directory |
+| zg      | denite grep              |
+| zh      | denite help              |
+| zm      | denite open menu         |
+

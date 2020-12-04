@@ -1,0 +1,60 @@
+[[plugins]]
+repo = 'honza/vim-snippets'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+hook_add = '''
+  source $NVIM_DIR/hook/denite.nvim
+'''
+
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'                                             
+
+[[plugins]]
+repo = 'kristijanhusak/defx-icons'
+hook_add = '''
+  source $NVIM_DIR/hook/defx-icons.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/defx.nvim'
+depends = ['defx-icons']
+hook_add = '''
+  source $NVIM_DIR/hook/defx.vim
+'''
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+  source $NVIM_DIR/hook/lightline.vim
+'''
+
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+hook_add = '''
+  source $NVIM_DIR/hook/fugitive.vim
+'''
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+hook_add = '''
+set background=dark
+autocmd VimEnter * nested colorscheme iceberg
+'''

@@ -1,5 +1,3 @@
-# Created by newuser for 5.7.1
-
 # key bind
 # curren vi like
 bindkey -v

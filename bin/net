@@ -1,0 +1,19 @@
+#!/bin/bash
+airport="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
+
+result=$("$airport" -I)
+
+if [[ "$result" = "AirPort: Off" ]]; then
+	echo 'Internet not connected'
+else
+	rssi=$(echo "$result" | awk '/agrCtlRSSI/{print $2}')
+	ssid=$(echo "$result" | awk '/ SSID:/{print $2}')
+	if [[ rssi -ge -100 && rssi -lt -80 ]];then
+		net_state="▃"
+	elif [[ rssi -lt -60 ]];then
+		net_state="▃▆"
+	else
+		net_state="▃▆▉"
+	fi
+	echo -e "$ssid $net_state" 
+fi

@@ -1,0 +1,12 @@
+#!/bin/bash
+usage=$(ps -A -o %cpu | awk '{usage += $1} END {printf "%d", usage}')
+
+if [[ "$usage" -ge 60 && "$usage" -lt 80 ]];then
+	color="#[fg=yellow]"
+elif [[ "$usage" -ge 80 ]];then
+	color="#[fg=red]"
+else
+	color=""
+fi
+
+echo "CPU:${color}${usage}%#[default]"

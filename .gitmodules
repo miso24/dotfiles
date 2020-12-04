@@ -1,0 +1,12 @@
+[submodule "z"]
+	path = z
+	url = ./.zsh/thirdparty/z
+[submodule ".zsh/thirdparty/z"]
+	path = .zsh/thirdparty/z
+	url = https://github.com/rupa/z
+[submodule ".zsh/thirdparty/.zsh/thirdparty/z"]
+	path = .zsh/thirdparty/.zsh/thirdparty/z
+	url = https://github.com/rupa/z
+[submodule ".zsh/thirdparty/.z"]
+	path = .zsh/thirdparty/.z
+	url = https://github.com/rupa/z

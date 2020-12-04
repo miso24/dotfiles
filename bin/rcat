@@ -1,0 +1,54 @@
+#! /bin/bash
+
+draw_mode=0
+files=()
+
+function show_usage() {
+  echo "usage: rcat [-VH] [file ...]"
+}
+
+# Check args
+for OPT in "$@"; do
+  case $OPT in
+    "-h" )
+      show_usage;
+      exit 0;;
+    "-V" ) draw_mode=1;;
+    "-H" ) draw_mode=2;;
+    -* )
+      echo "$0: illegal option -- $(echo $1 | sed 's/\-*//')" >&2;
+      exit 1;;
+    * ) files=("${files[@]}" $1);;
+  esac
+  shift
+done
+
+# cat
+for file in ${files[@]}; do
+  cat $file | gawk -v draw_mode=$draw_mode '
+    BEGIN {
+      col_data="9 214 11 154 10 14 39 12 165 201";
+      split(col_data, col_list, " ");
+      col = 0;
+    }
+
+    {
+      if (draw_mode == 1) {
+        col = 0;
+      }
+
+      for (i=1; i <= length($0); i++) {
+        c = substr($0, i, 1);
+        printf "\x1b[38;5;%dm%s", col_list[1+col], c;
+        if (draw_mode != 2) {
+          col = (col + 1) % length(col_list);
+        }
+      }
+      print "";
+
+      if (draw_mode == 2) {
+        col = (col + 1) % length(col_list);
+      }
+    }
+  '
+done

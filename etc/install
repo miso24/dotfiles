@@ -1,0 +1,68 @@
+#!/bin/sh
+export DOTPATH=~/.dotfiles
+
+dotfiles=()
+deny_list=(".git" ".gitignore" ".gitmodules" ".DS_Store")
+
+function is_exists() {
+  which "$1" > /dev/null 2>&1
+  return $?
+}
+
+function get_dotfiles() {
+  dotfiles=("bin" "etc")
+
+  # dotfiles
+  for file in .??* ; do
+    is_allow=true
+    # filter
+    for d_file in ${deny_list[@]}; do
+      if [[ "$d_file" == "$file" ]]; then
+        is_allow=false
+      fi
+    done
+    # add dotfiles
+    if ${is_allow} ; then
+      dotfiles+=($file)
+    fi
+  done
+}
+
+function dotfiles_deploy() {
+  cd $DOTPATH
+
+  if [ ${#dotfiles[@]} -eq 0 ]; then
+    get_dotfiles
+  fi
+
+  # symlink
+  for file in ${dotfiles[@]} ; do
+    ln -snfv "$DOTPATH/$file" "$HOME/$file"
+  done
+}
+
+function dotfiles_initialize() {
+  echo "Not implemented now!"
+  return -1
+}
+
+function dotfiles_download() {
+  if is_exist "git"; then
+    # donwload by git
+    git clone https://github.com/miso24/dotfiles "$DOTPATH"
+  elif is_exist "curl"; then
+    # donwload by curl
+    curl "https://github.com/miso24/dotflies/archive/master.tar.gz" | tar xvz
+    mv -f dotfiles-master $DOTPATH
+  else
+    echo "Oops! Please install curl or git"
+  fi
+}
+
+function dotfiles_install() {
+  dotfiles_download
+
+  dotfiles_deploy
+}
+
+dotfiles_install

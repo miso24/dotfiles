@@ -1,5 +1,7 @@
 #!/bin/sh
 export DOTPATH=~/.dotfiles
+GITHUB_URL="https://github.com/miso24/dotfiles"
+ARCHIVE_GITHUB_URL="https://github.com/miso24/dotflies/archive/master.tar.gz"
 
 dotfiles=()
 deny_list=(".git" ".gitignore" ".gitmodules" ".DS_Store")
@@ -51,12 +53,17 @@ function dotfiles_initialize() {
 }
 
 function dotfiles_download() {
+  if [ -d "$DOTPATH" ]; then
+    echo "$DOTPATH is already exists"
+    return -1
+  fi
+
   if is_exists "git"; then
     # donwload by git
-    git clone https://github.com/miso24/dotfiles "$DOTPATH"
+    git clone --recursive "$GITHUB_URL" "$DOTPATH"
   elif is_exists "curl"; then
     # donwload by curl
-    curl "https://github.com/miso24/dotflies/archive/master.tar.gz" | tar xvz
+    curl "$ARCHIVE_GITHUB_URL" | tar xvz
     mv -f dotfiles-master $DOTPATH
   else
     echo "Oops! Please install curl or git"

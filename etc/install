@@ -30,6 +30,10 @@ function get_dotfiles() {
 
 function dotfiles_deploy() {
   cd $DOTPATH
+  if [ $? -eq 0 ]; then
+    echo "Failed to move $DOTPATH"
+    return -1
+  fi
 
   if [ ${#dotfiles[@]} -eq 0 ]; then
     get_dotfiles
@@ -47,15 +51,16 @@ function dotfiles_initialize() {
 }
 
 function dotfiles_download() {
-  if is_exist "git"; then
+  if is_exists "git"; then
     # donwload by git
     git clone https://github.com/miso24/dotfiles "$DOTPATH"
-  elif is_exist "curl"; then
+  elif is_exists "curl"; then
     # donwload by curl
     curl "https://github.com/miso24/dotflies/archive/master.tar.gz" | tar xvz
     mv -f dotfiles-master $DOTPATH
   else
     echo "Oops! Please install curl or git"
+    return -1
   fi
 }
 

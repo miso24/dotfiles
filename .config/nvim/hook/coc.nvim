@@ -16,6 +16,12 @@ endfunction
 nnoremap <silent><expr> <c-space> coc#refresh()
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gb :b #<CR>
+
 function! s:show_documentation()
   if (index(['vim', 'help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -30,7 +36,38 @@ command! -nargs=0 Format :call CocAction('format')
 
 nnoremap [COCCMD] <nop>
 nmap <leader>c [COCCMD]
+nmap <leader>rn <Plug>(coc-rename)
 
+" format
 nnoremap [COCCMD]f :Format<CR>
+" search symbols
+nnoremap [COCCMD]s :CocList -I symbols<CR>
+" next item
+nnoremap [COCCMD]j :CocNext<CR>
+" prev item
+nnoremap [COCCMD]p :CocPrev<CR>
 nnoremap [COCCMD]l :CocList<CR>
 nnoremap [COCCMD]c :CocConfig<CR>
+
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+end
+
+augroup coc_texlab
+  autocmd!
+  autocmd FileType tex command! -buffer LatexBuild :call CocAction('runCommand', 'latex.Build')<CR>
+  autocmd FileType tex nnoremap lb :LatexBuild
+augroup END
+
+augroup coc_rust_analyzer
+  autocmd!
+  autocmd FileType rust nnoremap <silent> [COCCMD]r :call CocAction('runCommand', 'rust-analyzer.run')<CR>
+  autocmd FileType rust nnoremap <silent> [COCCMD]d :call CocAction('runCommand', 'rust-analyzer.openDocs')<CR>
+  autocmd FileType rust nnoremap <silent> [COCCMD]em :call CocAction('runCommand', 'rust-analyzer.expandMacro')<CR>
+  autocmd FileType rust nnoremap <silent> [COCCMD]b :call CocAction('runCommand', 'rust-analyzer.matchingBrace')<CR>
+augroup END

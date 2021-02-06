@@ -14,14 +14,12 @@
       "filetypes": ["sh"],
       "ignoredRootPaths": ["~"]
     },
-    "efm": {
-      "command": "efm-langserver",
-      "args": [],
-      "filetypes": ["vim", "markdown"]
-    },
     "nim": {
       "command": "nimlsp",
       "filetypes": ["nim"]
     }
-  }
+  },
+  "rust-analyzer.serverPath": "~/.cargo/bin/rust-analyzer",
+  "texlab.path": "texlab",
+  "latex.build.args": ["-pdfdvi"]
 }

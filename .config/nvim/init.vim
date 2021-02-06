@@ -113,3 +113,16 @@ augroup indent_opt
   autocmd!
   autocmd Filetype make setlocal noexpandtab shiftwidth=8 softtabstop=0
 augroup END
+
+" cheatsheet
+function s:open_cheatsheet()
+  let buf = nvim_create_buf(v:false, v:true)
+  let lines = readfile(expand('$NVIM_DIR/cheat_sheet.txt'))
+  call nvim_buf_set_lines(buf, 0, -1, v:true, lines)
+  let opt = {'relative': 'cursor', 'anchor': 'NW', 'width': 60, 'height': 20, 'col': 0, 'row': 1}
+  let win = nvim_open_win(buf, v:true, opt)
+  call nvim_win_set_option(win, 'winblend', 20)
+endfunction
+
+command! OpenCheatSheet :call s:open_cheatsheet()
+nmap <leader>oc :OpenCheatSheet<CR>

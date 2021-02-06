@@ -106,3 +106,10 @@ nnoremap sh <C-w>h
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 nnoremap sl <C-w>l
+
+let g:python3_host_prog = '/usr/local/opt/python@3.8/bin/python3.8'
+
+augroup indent_opt
+  autocmd!
+  autocmd Filetype make setlocal noexpandtab shiftwidth=8 softtabstop=0
+augroup END

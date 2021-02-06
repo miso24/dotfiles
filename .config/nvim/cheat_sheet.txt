@@ -38,6 +38,35 @@
 | sk      | move top window    |
 | sl      | move right window  |
 
+## coc
+
+[COCCMD]: <space>c
+
+| command    | detail                 |
+|------------|------------------------|
+| [COCCMD]f  | code formatting        |
+| [COCCMD]c  | open coc-settings.json |
+| gd         | go to definition       |
+| gy         | go to type definition  |
+| gi         | go to implementation   |
+| gr         | go to references       |
+| <leader>rn | rename                 |
+
+## coc (tex)
+
+| command | detail |
+|---------|--------|
+| lb      | build  |
+
+## coc (rust)
+
+| command    | detail         |
+|------------|----------------|
+| [COCCMD]r  | run            |
+| [COCCMD]d  | open docs      |
+| [COCCMD]em | expand macro   |
+| [COCCMD]b  | matching brace |
+
 ## denite
 
 | command | detail                   |

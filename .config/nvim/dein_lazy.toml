@@ -43,3 +43,11 @@ on_i = 1
 [[plugins]]
 repo = 'jiangmiao/auto-pairs'
 on_i = 1
+
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+merged = 0
+on_event = ['VimEnter']
+hook_post_source = '''
+  luafile $NVIM_DIR/hook/nvim-treesitter.lua
+'''
